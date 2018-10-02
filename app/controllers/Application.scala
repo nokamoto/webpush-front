@@ -1,7 +1,9 @@
 package controllers
 
 import javax.inject.Inject
+import models.PushSubscription
 import modules.ApplicationServerKeyModule.ApplicationServerKey
+import play.api.libs.json.Json
 import play.api.mvc.AbstractController
 import play.api.mvc.Action
 import play.api.mvc.AnyContent
@@ -12,4 +14,10 @@ class Application @Inject()(applicationServerKey: ApplicationServerKey,
     extends AbstractController(cc) {
   def index: Action[AnyContent] =
     Action(_ => Ok(views.html.index(applicationServerKey.value)))
+
+  def test: Action[PushSubscription] = Action(parse.json[PushSubscription]) {
+    req =>
+      println(s"test ${Json.toJson(req.body)}")
+      Ok(Json.obj())
+  }
 }
