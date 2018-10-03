@@ -2,6 +2,8 @@ scalaVersion := "2.12.6"
 
 name := "webpush-front"
 
+version := IO.readLines(file("VERSION")).head
+
 enablePlugins(PlayScala)
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
