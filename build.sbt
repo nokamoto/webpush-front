@@ -4,4 +4,11 @@ name := "webpush-front"
 
 enablePlugins(PlayScala)
 
-libraryDependencies ++= Seq(guice)
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+
+libraryDependencies ++= Seq(
+  guice,
+  "com.github.nokamoto" %% "webpush-protobuf-grpc" % "0.0.0-SNAPSHOT",
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test,
+  "org.mockito" % "mockito-core" % "2.22.0" % Test
+)
