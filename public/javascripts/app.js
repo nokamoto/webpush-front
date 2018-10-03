@@ -58,4 +58,24 @@ window.addEventListener('load', function() {
             }
         ).catch(function(e) { console.log(e) });
     };
+
+    document.getElementById('test').onclick = function() {
+        subscription().then(
+            function(s) {
+                var data = {endpoint: '', auth: '', p256dh: ''};
+                
+                if (s != null) {
+                    data.endpoint = s.endpoint;
+                    data.p256dh = base64encode(s.getKey('p256dh'));
+                    data.auth = base64encode(s.getKey('auth'));
+                }
+
+                fetch('/test', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+            }
+        ).catch(function(e) { console.log(e) });
+    };
 });
