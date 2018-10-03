@@ -1,0 +1,13 @@
+version: '3'
+services:
+  webpush:
+    image: nokamoto13/webpush-service-scala:0.0.0
+    expose:
+      - 9090
+  front:
+    image: nokamoto13/webpush-front:0.0.0
+    command: -Dgrpc.host=webpush
+    depends_on:
+      - webpush
+    ports:
+      - 9000:9000
